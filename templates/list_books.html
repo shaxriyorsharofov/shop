@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Books</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#eef4ff;
+}
+
+header{
+
+    background:linear-gradient(90deg,#4338ca,#2563eb);
+
+    color:white;
+
+    padding:25px 60px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+header h1{
+
+    font-size:35px;
+
+}
+
+nav a{
+
+    color:white;
+
+    text-decoration:none;
+
+    margin-left:20px;
+
+    background:rgba(255,255,255,.15);
+
+    padding:12px 20px;
+
+    border-radius:10px;
+
+    transition:.3s;
+
+}
+
+nav a:hover{
+
+    background:white;
+
+    color:#2563eb;
+
+}
+
+.container{
+
+    width:1200px;
+
+    margin:50px auto;
+
+}
+
+.cards{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+
+    gap:30px;
+
+}
+
+.card{
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:25px;
+
+    box-shadow:0 15px 30px rgba(0,0,0,.1);
+
+    transition:.35s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:0 20px 40px rgba(0,0,0,.18);
+
+}
+
+.title{
+
+    font-size:28px;
+
+    font-weight:bold;
+
+    color:#2563eb;
+
+    text-decoration:none;
+
+}
+
+.title:hover{
+
+    color:#4f46e5;
+
+}
+
+.info{
+
+    margin-top:18px;
+
+    color:#555;
+
+    line-height:32px;
+
+    font-size:17px;
+
+}
+
+.buttons{
+
+    margin-top:25px;
+
+    display:flex;
+
+    gap:10px;
+
+}
+
+.btn{
+
+    text-decoration:none;
+
+    color:white;
+
+    padding:10px 18px;
+
+    border-radius:10px;
+
+    font-weight:bold;
+
+}
+
+.detail{
+
+    background:#2563eb;
+
+}
+
+.edit{
+
+    background:#f59e0b;
+
+}
+
+.delete{
+
+    background:#ef4444;
+
+}
+
+.detail:hover{
+
+    background:#1d4ed8;
+
+}
+
+.edit:hover{
+
+    background:#d97706;
+
+}
+
+.delete:hover{
+
+    background:#dc2626;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>📚 Library Books</h1>
+
+<nav>
+
+<a href="{% url 'home' %}">🏠 Home</a>
+
+<a href="{% url 'create_book' %}">➕ Add Book</a>
+
+</nav>
+
+</header>
+
+<div class="container">
+
+<div class="cards">
+
+{% for book in books %}
+
+<div class="card">
+
+<a class="title" href="{% url 'detail' book.id %}">
+{{ book.name }}
+</a>
+
+<div class="info">
+
+<p>💰 <b>Price:</b> {{ book.price }}</p>
+
+<p>👤 <b>Author:</b> {{ book.author }}</p>
+
+<p>📚 <b>Genre:</b> {{ book.type_janr }}</p>
+
+<p>📦 <b>Quantity:</b> {{ book.quantity }}</p>
+
+<p>📝 {{ book.desc }}</p>
+
+</div>
+
+<div class="buttons">
+
+<a class="btn detail" href="{% url 'detail' book.id %}">
+View
+</a>
+
+<!-- Keyin update va delete qo'shsang -->
+<!--
+<a class="btn edit" href="#">Edit</a>
+<a class="btn delete" href="#">Delete</a>
+-->
+<a class="btn delete" href="{% url 'delete' book.id %}">
+    🗑 Delete
+</a>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+</body>
+</html>

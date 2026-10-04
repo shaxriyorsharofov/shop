@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>{{ book.name }}</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+
+    background:linear-gradient(135deg,#4f46e5,#2563eb);
+
+    min-height:100vh;
+
+}
+
+nav{
+
+    padding:25px 60px;
+
+}
+
+nav a{
+
+    text-decoration:none;
+
+    color:white;
+
+    background:rgba(255,255,255,.18);
+
+    padding:12px 22px;
+
+    border-radius:12px;
+
+    margin-right:15px;
+
+    transition:.3s;
+
+}
+
+nav a:hover{
+
+    background:white;
+
+    color:#2563eb;
+
+}
+
+.card{
+
+    width:700px;
+
+    margin:40px auto;
+
+    background:white;
+
+    border-radius:25px;
+
+    padding:40px;
+
+    box-shadow:0 20px 45px rgba(0,0,0,.25);
+
+}
+
+.card h1{
+
+    color:#2563eb;
+
+    font-size:42px;
+
+    margin-bottom:30px;
+
+}
+
+.info{
+
+    font-size:20px;
+
+    line-height:45px;
+
+    color:#444;
+
+}
+
+.info span{
+
+    font-weight:bold;
+
+    color:#111;
+
+}
+
+.desc{
+
+    margin-top:20px;
+
+    background:#eef4ff;
+
+    padding:20px;
+
+    border-radius:15px;
+
+    line-height:30px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav>
+
+<a href="{% url 'home' %}">🏠 Home</a>
+
+<a href="{% url 'list' %}">📚 Books</a>
+
+<a href="{% url 'create_book' %}">➕ Add Book</a>
+
+<a href="{% url 'update' book.id %}">➕ Edit</a>
+
+
+</nav>
+
+<div class="card">
+
+<h1>📖 {{ book.name }}</h1>
+
+<div class="info">
+
+<p><span>💰 Price:</span> {{ book.price }}</p>
+
+<p><span>👤 Author:</span> {{ book.author }}</p>
+
+<p><span>📚 Genre:</span> {{ book.type_janr }}</p>
+
+<p><span>📦 Quantity:</span> {{ book.quantity }}</p>
+
+</div>
+
+<div class="desc">
+
+<h3>Description</h3>
+
+<br>
+
+{{ book.desc }}
+
+</div>
+
+</div>
+
+</body>
+
+</html>
